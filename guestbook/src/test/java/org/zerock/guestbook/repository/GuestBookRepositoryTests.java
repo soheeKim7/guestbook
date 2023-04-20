@@ -104,11 +104,25 @@ public class GuestBookRepositoryTests {
 	public void Test300delete() {
 		QGuestBook qGuestBook=QGuestBook.guestBook;		
 		BooleanBuilder builder = new BooleanBuilder();		
+<<<<<<< HEAD
 		BooleanExpression exp=qGuestBook.gno.goe(300);
 //		BooleanExpression exp=qGuestBook.gno.between(1, 300);		
 		builder.and(exp);		
 		Iterable<GuestBook> list=guestBookRepository.findAll(builder);		
 		guestBookRepository.deleteAll(list);		
+=======
+		//원하는 where절 조건 셋팅 (제목 or 작성자 or 내용)
+		BooleanExpression exp=qGuestBook.gno.goe(300);
+//		BooleanExpression exp=qGuestBook.gno.between(1, 300);		
+		builder.and(exp);		
+		Iterable<GuestBook> list=guestBookRepository.findAll(builder);		
+		guestBookRepository.deleteAll(list);		
+	}
+	
+	@Test
+	public void Test300delete2() {
+		guestBookRepository.del300();
+>>>>>>> branch 'main' of https://github.com/soheeKim7/guestbook.git
 	}
 	
 	@Test

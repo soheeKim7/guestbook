@@ -41,7 +41,7 @@ public class GuestBookRepositoryTests {
 		for(int i=1;i<=300;i++) {
 			guestBookRepository.save(new GuestBook(null,"제목"+i,"내용"+i,"작성자"+i));
 		}		
-		IntStream.rangeClosed(1, 300).forEach(i->guestBookRepository.save(new GuestBook(null,"제목"+i,"내용"+i,"작성자"+i)));		
+//		IntStream.rangeClosed(1, 300).forEach(i->guestBookRepository.save(new GuestBook(null,"제목"+i,"내용"+i,"작성자"+i)));		
 	}
 	
 	@Test
@@ -77,21 +77,45 @@ public class GuestBookRepositoryTests {
 		//where 조건을 셋팅하기 위한 객체
 		BooleanBuilder builder = new BooleanBuilder();
 		
-		//원하는 where절 조건 셋팅
+		//원하는 where절 조건 셋팅 (제목 or 작성자 or 내용)
 		BooleanExpression expression=qGuestBook.title.contains("9");
 		BooleanExpression expression2=qGuestBook.content.contains("8");
+		BooleanExpression expression3=qGuestBook.writer.contains("7");
+		expression.or(expression2).or(expression3);
 		
 		//where 조건 셋팅
-		builder.and(expression).and(expression2);
+//		builder.and(expression).or(expression2).or(expression3);
+		builder.and(expression);  //최초는 무조건 and로 넣어야 함! 빈거에 넣은거라서 그리고!! 
 		
 		//실행                                    //query 인터페이스를 통해서 추가된 메소드//오버로딩 됨!!
 		Page<GuestBook> list= guestBookRepository.findAll(builder,pageable);  //findAll 쓰기위해서 GuestBookRepository 인터페이스에 추가로 상속 받아야함!!!
 		
-		list.forEach(x->System.out.println(x));
-		
+		list.forEach(x->System.out.println(x));		
 	}
 	
+	@Test
+	public void TestDelete() {
+		guestBookRepository.deleteById(310);		
+	}
 	
+	//1~299까지만 남겨두는 
+	//테스트 프로그램 만들어서 동작시키세요.
+	@Test
+	public void Test300delete() {
+		QGuestBook qGuestBook=QGuestBook.guestBook;		
+		BooleanBuilder builder = new BooleanBuilder();		
+		//원하는 where절 조건 셋팅 (제목 or 작성자 or 내용)
+		BooleanExpression exp=qGuestBook.gno.goe(300);
+//		BooleanExpression exp=qGuestBook.gno.between(1, 300);		
+		builder.and(exp);		
+		Iterable<GuestBook> list=guestBookRepository.findAll(builder);		
+		guestBookRepository.deleteAll(list);		
+	}
+	
+	@Test
+	public void Test300delete2() {
+		guestBookRepository.del300();
+	}
 	
 	
 	

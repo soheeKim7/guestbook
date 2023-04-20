@@ -28,7 +28,7 @@ import lombok.ToString;
 @Getter  //디비에서 가져온 객체를 하나하나 읽어줘야해서!! 게터는 필요해!
 @ToString
 //@Builder 만약 빌더 쓰려면 기본과,올 생성자 있어야함!
-public class GuestBook extends BaseEntity {
+public class GuestBook extends BaseEntity {   //테이블 지정안해줘서!!! GuestBook 을 이용해서 만들어져서 guest_book 이렇게!
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer gno;  //첫글자 대문자는 클래스만, 전부 대문자일때 상수값!! 

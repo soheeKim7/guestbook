@@ -1,5 +1,7 @@
 package org.zerock.guestbook.repository;
 
+import java.util.stream.IntStream;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,5 +25,14 @@ public class GuestBookRepositoryTests {
 		guestBookRepository.save(guestBook);
 	}
 	
+	@Test
+	public void insertDummies() {
+		for(int i=1;i<=300;i++) {
+			guestBookRepository.save(new GuestBook(null,"제목"+i,"내용"+i,"작성자"+i));
+		}
+		
+		IntStream.rangeClosed(1, 300).forEach(i->guestBookRepository.save(new GuestBook(null,"제목"+i,"내용"+i,"작성자"+i)));
+		
+	}
 	
 }

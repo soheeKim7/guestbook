@@ -14,24 +14,31 @@ public class GuestBookRepositoryTests {
 	GuestBookRepository guestBookRepository;
 	
 	@Test
-	public void testInsert() {
+	public void TestInsert() {
 		GuestBook guestBook=new GuestBook(null,"제목","내용3","작성자"); //상속받은 변수들은 기본생성자에 원래 포함 안됨! 넣고 싶으면 따로추가 해서 만들어야함!
 		guestBookRepository.save(guestBook); //여기에서 guestBook은 우리가 만든 객체인거고, 이repository를 통해서 jpa가 알아서 그 pesistene context에서 객체 만들어서 막 처리함
 	}
 	
 	@Test
-	public void testModify() {
+	public void TestModify() {
 		GuestBook guestBook=new GuestBook(1,"제목","내용변경함","작성자");
 		guestBookRepository.save(guestBook);
 	}
 	
 	@Test
-	public void insertDummies() {
+	public void TestInsertDummies() {
 		for(int i=1;i<=300;i++) {
 			guestBookRepository.save(new GuestBook(null,"제목"+i,"내용"+i,"작성자"+i));
 		}
 		
-		IntStream.rangeClosed(1, 300).forEach(i->guestBookRepository.save(new GuestBook(null,"제목"+i,"내용"+i,"작성자"+i)));
+		IntStream.rangeClosed(1, 300).forEach(i->guestBookRepository.save(new GuestBook(null,"제목"+i,"내용"+i,"작성자"+i)));		
+	}
+	
+	@Test
+	public void TestUpdate() {
+		//조회
+		
+		
 		
 	}
 	

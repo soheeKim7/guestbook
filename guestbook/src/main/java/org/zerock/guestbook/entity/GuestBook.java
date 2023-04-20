@@ -11,6 +11,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+/**
+ * 게시글 저장을 위한 엔티티 클래스
+ * @author KSH
+ * @since 2023.04.20
+ * @version 1.0
+ *
+ */
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor  //JPA에서 기본생성자를 통해서 작업을해서 꼭 필요(값을 가져오려면! 객체를 만들어서(기본생성자를 이용) 하기때문에 꼭필요)
@@ -34,4 +41,15 @@ public class GuestBook extends BaseEntity {
 	
 	private String writer;
 	
+	/**
+	 * 수정시 제목수정용 메소드
+	 * @param title 제목
+	 */	
+	public void changeTitle(String title) {
+		this.title=title;
+	}
+	
+	public void changeContent(String content) {
+		this.content=content;
+	}
 }

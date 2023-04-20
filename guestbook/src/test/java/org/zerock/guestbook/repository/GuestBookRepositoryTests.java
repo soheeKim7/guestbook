@@ -62,7 +62,7 @@ public class GuestBookRepositoryTests {
 		//페이지처리를 위한 페이지객체 생성
 //		PageRequest pageable=  PageRequest.of(0, 100,Sort.by("gno").descending()); //10개씩 봤을때 첫페이지
 		//PageRequest가 Pageable 인터페이스를 구현한거라서 페이저블로 바로 인터페이스로 받을 수 있음!!
-		Pageable pageable=  PageRequest.of(0, 100,Sort.by("gno").descending()); //10개씩 봤을때 첫페이지
+		Pageable pageable=  PageRequest.of(0, 10,Sort.by("gno").descending()); //10개씩 봤을때 첫페이지
 		//글번호로 내림차순 정렬해서 10개씩 봤을때 첫페이지
 		
 		////////////////////////////////////Querydsl 사용법//////////////////////////////////////////////////
@@ -104,7 +104,6 @@ public class GuestBookRepositoryTests {
 	public void Test300delete() {
 		QGuestBook qGuestBook=QGuestBook.guestBook;		
 		BooleanBuilder builder = new BooleanBuilder();		
-		//원하는 where절 조건 셋팅 (제목 or 작성자 or 내용)
 		BooleanExpression exp=qGuestBook.gno.goe(300);
 //		BooleanExpression exp=qGuestBook.gno.between(1, 300);		
 		builder.and(exp);		
@@ -117,6 +116,7 @@ public class GuestBookRepositoryTests {
 		guestBookRepository.del300();
 	}
 	
+	//콘솔 프로그램???
 	
 	
 }

@@ -9,10 +9,12 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
+import lombok.Getter;
 
 //@Entity 이렇게 하면 테이블이 생성됨!
 @MappedSuperclass //테이블생성X (부모클래스로 사용)
 @EntityListeners(value= {AuditingEntityListener.class})  //여기부분에 엔티티들을 감시해라! 즉 리스너들이라서!! 여기 부분 봐라!
+@Getter  //이렇게 게터를 해줘야 자식클래스에서 읽을수있다! 
 public class BaseEntity {
 	//작성시간
 	@CreatedDate	//persistence context 에서 p134그림 참고, 관리해서 값을 읽거나 만들때, //객체자체를 생성해서 만든다! 그때의 생성 시간 아냐아냐

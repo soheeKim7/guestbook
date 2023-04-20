@@ -39,7 +39,8 @@ public class GuestBook extends BaseEntity {   //테이블 지정안해줘서!!! 
 	@Column(length=1500,nullable=false)
 	private String content;
 	
-	private String writer;
+	private String writer;	
+	
 	
 	/**
 	 * 수정시 제목수정용 메소드

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{/layout/basic::setContent(~{this::content})}">
+
+  <th:block th:fragment="content">
+    <ul>
+		<li th:each="n:${list}" >
+			gno:[[${n.gno}]] modDate:[[${n.modDate}]] regDate:[[${n.regDate}]] content:[[${n.content}]] title:[[${n.title}]] writer:[[${n.writer}]]
+		</li>
+	</ul>
+  </th:block>
+
+</th:block>
+</html>

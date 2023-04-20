@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{/layout/basic::setContent(~{this::content})}">
+
+  <th:block th:fragment="content">
+    <form action="result1" method="post">
+		페이지 : <input type="number" name="page"> <br>
+		몇개씩 : <input type="number" name="amount"> <br>		
+		<input type="submit" value="내놔">
+	</form>
+  </th:block>
+
+</th:block>
+</html>

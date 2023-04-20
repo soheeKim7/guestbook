@@ -1,10 +1,14 @@
 package org.zerock.guestbook.repository;
 
+import java.util.Optional;
 import java.util.stream.IntStream;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.zerock.guestbook.entity.GuestBook;
 
 @SpringBootTest //test를 위해 꼭 필요!
@@ -29,17 +33,35 @@ public class GuestBookRepositoryTests {
 	public void TestInsertDummies() {
 		for(int i=1;i<=300;i++) {
 			guestBookRepository.save(new GuestBook(null,"제목"+i,"내용"+i,"작성자"+i));
-		}
-		
+		}		
 		IntStream.rangeClosed(1, 300).forEach(i->guestBookRepository.save(new GuestBook(null,"제목"+i,"내용"+i,"작성자"+i)));		
 	}
 	
 	@Test
 	public void TestUpdate() {
 		//조회
-		
-		
+		Optional<GuestBook> result=guestBookRepository.findById(304);
+		if(result.isPresent()) {
+			GuestBook guestBook=result.get();
+			guestBook.changeContent("내용수정이야~");
+			guestBook.changeTitle("제목수정이야~~");
+			guestBookRepository.save(guestBook);			
+		}		
+	}
+	
+	//Querydsl 사용법
+	@Test
+	public void testQuery1() {
+		//페이지처리를 위한 페이지객체 생성
+//		PageRequest pageable=  PageRequest.of(0, 100,Sort.by("gno").descending()); //10개씩 봤을때 첫페이지
+		//PageRequest가 Pageable 인터페이스를 구현한거라서 페이저블로 바로 인터페이스로 받을 수 있음!!
+		Pageable pageable=  PageRequest.of(0, 100,Sort.by("gno").descending()); //10개씩 봤을때 첫페이지
+		//글번호로 내림차순 정렬해서 10개씩 봤을때 첫페이지
 		
 	}
+	
+	
+	
+	
 	
 }

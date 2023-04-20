@@ -5,7 +5,13 @@
   <th:block th:fragment="content">
     <ul>
 		<li th:each="n:${list}" >
-			gno:[[${n.gno}]] modDate:[[${n.modDate}]] regDate:[[${n.regDate}]] content:[[${n.content}]] title:[[${n.title}]] writer:[[${n.writer}]]
+			gno: [[${n.gno}]] content: [[${n.content}]] title: [[${n.title}]] writer: [[${n.writer}]]
+		</li>
+	</ul>
+	<hr>
+	<ul>
+		<li th:each="n:${list}" >
+			modDate: [[${#temporals.format(n.modDate,'yy/MM/dd/E a hh:mm:ss')}]] regDate: [[${#temporals.format(n.regDate,'yy/MM/dd/E a HH:mm:ss')}]]
 		</li>
 	</ul>
   </th:block>

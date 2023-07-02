@@ -1,10 +1,7 @@
 package org.zerock.guestbook.repository;
 
 import java.util.Optional;
-
-
 import java.util.stream.IntStream;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,7 +11,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.zerock.guestbook.entity.GuestBook;
 import org.zerock.guestbook.entity.QGuestBook;
-
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.dsl.BooleanExpression;
 

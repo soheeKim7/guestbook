@@ -2,6 +2,7 @@ package org.zerock.guestbook.repository;
 
 import java.util.Optional;
 
+
 import java.util.stream.IntStream;
 
 import org.junit.jupiter.api.Test;
@@ -26,13 +27,13 @@ public class GuestBookRepositoryTests {
 	
 	@Test
 	public void TestInsert() {
-		GuestBook guestBook=new GuestBook(null,"제목","내용3","작성자"); //상속받은 변수들은 기본생성자에 원래 포함 안됨! 넣고 싶으면 따로추가 해서 만들어야함!
+		GuestBook guestBook=new GuestBook(null,"제목테스트","내용테스트","작성자테스트"); //상속받은 변수들은 기본생성자에 원래 포함 안됨! 넣고 싶으면 따로추가 해서 만들어야함!
 		guestBookRepository.save(guestBook); //여기에서 guestBook은 우리가 만든 객체인거고, 이repository를 통해서 jpa가 알아서 그 pesistene context에서 객체 만들어서 막 처리함
 	}
 	
 	@Test
 	public void TestModify() {
-		GuestBook guestBook=new GuestBook(1,"제목","내용변경함","작성자");
+		GuestBook guestBook=new GuestBook(4,"제목 변경","내용 변경","작성자 변경");
 		guestBookRepository.save(guestBook);
 	}
 	
